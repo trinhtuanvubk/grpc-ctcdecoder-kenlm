@@ -1,0 +1,21 @@
+
+syntax = "proto3" ;
+
+package grpc_dec ; 
+
+service Decoder {
+    rpc Decode (Logits) returns (Transcription) {}
+}
+
+
+message Logits {
+    // repeated InferTensorContents contents = 1; 
+    repeated int32 shape = 1 ; 
+    repeated float data = 2; 
+}
+
+message Transcription {
+    string greedy_trans = 1 ; 
+    string beam_trans = 2 ; 
+    repeated int32 beam_decoded_offsets = 3 ;
+}
